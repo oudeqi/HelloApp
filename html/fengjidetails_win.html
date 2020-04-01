@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+  <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+  <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+  <style media="screen">
+    html, body {
+      height: 100%;background-image: url(../image/userinfo-bg.png);
+      background-position: top;background-repeat: no-repeat;
+      background-size: contain;;
+    }
+    .details-back {
+      display: inline-block;width: 24px;height: 24px;
+      background-image: url(../image/details-back.png);background-repeat: no-repeat;background-position: center;
+      background-size: contain;
+    }
+    .aui-bar-nav {
+      color: #fff;background-color: rgba(0,0,0,0);
+    }
+    .right-btn {
+      font-size: 15px;color: #fff;
+    }
+    .aui-title {
+      font-size: 18px;font-weight: bold;
+    }
+    .search-container {
+      padding: 15px;
+    }
+    .search {
+      height:40px;border:1px solid #fff;border-radius:8px;
+      width: 100%;display: flex;align-items: center;color: #fff;font-size: 16px;
+    }
+    .search-item {
+      width: 50%;height: 100%;display: flex;align-items: center;justify-content: center;
+    }
+    .search-item:last-child {
+      border-left: 1px solid #fff;
+    }
+    .icon-down {
+      display: inline-block;vertical-align: middle;width: 16px;height: 16px;margin-left: 10px;margin-top: 3px;
+      background-image: url(../image/arrow-down.png);background-size: contain;
+      background-repeat: no-repeat;background-position: center;
+    }
+    .active {
+      background-color: rgba(255,255,255,0.35);
+    }
+  </style>
+</head>
+<body>
+  <header class="aui-bar aui-bar-nav" id="aui-header">
+    <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+      <span class="details-back"></span>
+    </a>
+    <div class="aui-title">
+      <span>WJP-01</span>
+    </div>
+    <a class="aui-btn aui-pull-right">
+      <span class="right-btn">运维系统</span>
+    </a>
+  </header>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+
+
+
+  apiready = function(){
+    api.parseTapmode();
+    var header = $api.byId('aui-header');
+    $api.fixStatusBar(header);
+    var offsetHeader = $api.offset(header);
+
+    api.openFrame({
+      name: 'fengjidetails_frm',
+      url: 'fengjidetails_frm.html',
+      bounces: true,
+      rect: {
+        x: 0,
+        y: offsetHeader.h,
+        w: 'auto',
+        h: 'auto'
+      }
+    })
+  };
+  function closeWin(){
+    api.closeWin({});
+  }
+</script>
+</html>

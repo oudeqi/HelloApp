@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style media="screen">
+    html, body {
+      height: 100%;width: 100%;
+    }
+    body {
+      background-image: url(../image/userinfo-bg.png);background-position: top;
+      background-repeat: no-repeat;background-size: contain;
+    }
+    .container {
+      height: 100%;display: flex;flex-direction: column;align-items: center;
+    }
+    .top {
+      flex-grow: 1;width: 100%;
+    }
+    .bottom {
+      padding: 30px 20px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .btn {
+      height:44px;width: 100%;border-radius:44px;font-size: 18px;
+      background:rgba(74,198,123,1);color: #fff;
+      display: flex;align-items: center;justify-content: center;
+    }
+    .btn.active {
+      background:rgba(74,198,123,0.7);
+    }
+    .image {
+      width: 70px;height: 70px;background-image: url(../image/avatar.png);
+      background-position: center;background-repeat: no-repeat;
+      background-size: contain;margin: 0 auto;margin-top: 100px;
+    }
+    .username {
+      text-align: center;color: #fff;font-size: 18px;padding-top: 10px;
+    }
+    .version {
+      text-align: center;color: #fff;font-size: 15px;padding-top: 10px;
+      color:rgba(196,255,220,1);
+    }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top" id="header">
+      <div class="image"></div>
+      <div class="username" id="username">?</div>
+      <div class="version">版本号 v1.0001</div>
+    </div>
+    <div class="bottom">
+      <div class="btn" tapmode="active" onclick="logout()">退出登录</div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+
+    function logout () {
+      api.confirm({
+        title: '提示',
+        msg: '确定要退出登录吗？',
+        buttons: ['确定', '取消']
+      }, function(ret, err) {
+        var index = ret.buttonIndex;
+        if (index === 1) {
+          $api.clearStorage()
+          api.openWin({
+            name: 'login_win',
+            url: './login_win.html',
+            bgColor: '#fff',
+            slidBackEnabled: false,
+          });
+          setTimeout(function(){
+            closeDrawerPane()
+          }, 500)
+        }
+      });
+    }
+
+    function closeDrawerPane () {
+      api.closeDrawerPane();
+    }
+
+    apiready = function(){
+      api.parseTapmode();
+      var header = $api.byId('header');
+      $api.fixStatusBar(header);
+      var userinfo = $api.getStorage('userinfo');
+      $api.byId('username').innerHTML = userinfo.userName
+
+    };
+</script>
+</html>

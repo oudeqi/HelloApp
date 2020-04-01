@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>Index</title>
+</head>
+<body>
+</body>
+<script type="text/javascript" src="./script/api.js"></script>
+<script type="text/javascript">
+// if (err) {
+//   api.toast({
+//     msg: err.body.message,
+//     location: 'middle'
+//   });
+// } else if (ret.code === '1200') {
+//
+// } else {
+//   api.toast({
+//     msg: ret.message,
+//     location: 'middle'
+//   });
+// }
+    apiready = function() {
+      // $api.setStorage()
+      // $api.getStorage()
+      // $api.rmStorage()
+      // $api.clearStorage()
+      var userinfo = $api.getStorage('userinfo')
+      if ( userinfo) {
+        api.openDrawerLayout({
+          name: 'home_win',
+          url: 'html/home_win.html',
+          leftPane: {
+            name: 'userinfo_win',
+            url: 'html/userinfo_win.html',
+            bgColor: '#fff',
+            bounces:false,
+          },
+          slidBackEnabled: false,
+          slidBackType: 'edge',
+        });
+      } else {
+        api.openWin({
+          name: 'login_win',
+          url: 'html/login_win.html',
+          bgColor: '#fff',
+          slidBackEnabled: false,
+        });
+      }
+
+      api.addEventListener({
+        name:'smartupdatefinish'
+      }, function(ret, err){
+        api.confirm({
+          title: '提示',
+          msg: '云修复完成，是否需要重启应用？',
+          buttons: ['确定', '取消']
+        }, function(ret, err) {
+          var index = ret.buttonIndex;
+          if (index === 1) {
+            api.rebootApp();
+          }
+        });
+      });
+
+      api.addEventListener({
+        name:'launchviewclicked'
+      },function(ret,err){
+        api.alert({
+          msg:ret.value
+        });
+      });
+
+    };
+</script>
+</html>

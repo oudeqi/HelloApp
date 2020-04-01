@@ -1,0 +1,234 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+  <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+  <title>Hello APP</title>
+  <link rel="stylesheet" type="text/css" href="../css/api.css" />
+  <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+  <style>
+    html, body {
+      background-color: rgba(0,0,0,0);
+    }
+    .container {
+      padding: 5px 15px 5px;border-radius: 10px;overflow: hidden;
+    }
+    section {
+      background:rgba(255,255,255,1);border-radius:6px;padding: 5px 20px 5px;
+      box-sizing: border-box;margin-bottom: 14px;
+      box-shadow:0px 6px 40px 0px rgba(141,150,157,0.3);
+    }
+    .error {
+      color: #E13F3F !important;
+    }
+    .warning {
+      color: #EFAF01 !important;
+    }
+    .normal {
+      color: #61B651 !important;
+    }
+    .top {
+      display: flex;align-items: center;justify-content: space-between;padding-top: 12px;
+    }
+    .top span {
+      font-size: 17px;color:rgba(153,153,153,1);
+    }
+    .middle {
+      margin-top: 15px;padding-bottom: 5px;
+    }
+    .middle strong {
+      font-size:16px;font-weight:bold;color:rgba(51,51,51,1);
+    }
+    .middle .midd-row {
+      border-bottom: 1px solid rgba(232,232,232,1);display: flex;align-items: center;padding: 4px 0;
+    }
+    .middle .midd-row:last-child {
+      border-bottom: 0;
+    }
+    .middle .midd-row .midd-col {
+      width: 50%;position: relative;height: 50px;
+    }
+    .middle .midd-row .midd-col:first-child::after {
+      content: "";display: block;width: 1px;height: 60%;position: absolute;
+      top: 20%;right: 0;bottom: 20%;background: rgba(232,232,232,1);
+    }
+    .middle .midd-row .midd-col p {
+      text-align: center;font-size: 16px;font-weight:bold;color:rgba(51,51,51,1);line-height: 1.3;
+    }
+    .middle .midd-row .midd-col span {
+      color:rgba(119,119,119,1);font-size: 15px;font-weight: normal;display: inline-block;vertical-align: middle;
+    }
+    .icon {
+      display: inline-block;vertical-align: middle;width: 20px; height: 20px;
+      background-color: #eee;margin-right: 4px;
+    }
+
+    .bottom {
+      border-radius: 6px;overflow: hidden;background-image: url(../image/details-bg2.png);background-position: center;
+      background-repeat: no-repeat;background-size: cover;padding: 0px 16px;margin-bottom: 10px;
+    }
+    .bottom-item {
+      display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid rgba(255,255,255,0.35);
+      padding: 10px 0;
+    }
+    .bottom-item p {
+      color: #fff;
+    }
+    .bottom-item p span {
+      font-size: 15px;display: inline-block;vertical-align: middle;
+    }
+    .bottom-item p strong {
+      font-size: 18px;display: inline-block;vertical-align: middle;
+    }
+    .bottom-item:last-child {
+      border-bottom: 0;
+    }
+    .dian-icon {
+      display: inline-block;vertical-align: middle;width: 20px;height: 20px;background-image: url(../image/dian-icon.png);
+      background-repeat: no-repeat;background-position: center;background-size: contain;
+    }
+    .dian-icon2 {
+      display: inline-block;vertical-align: middle;width: 26px;height: 26px;background-image: url(../image/dian-icon2.png);
+      background-repeat: no-repeat;background-position: center;background-size: contain;margin-left: 6px;
+    }
+    .link {
+      display: flex;align-items: center;border-bottom: 1px solid rgba(240,240,240,1);height: 50px;
+    }
+    .link:last-child {
+      border-bottom: 0;
+    }
+    .link span {
+      flex-grow: 1;
+    }
+    .link i {
+      flex-shrink: 0;display: block;width: 25px;height: 25px;background-image: url(../image/enter-icon2.png);
+      background-repeat: no-repeat;background-position: center;background-size: contain;margin-left: -4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section>
+      <div class="top">
+        <div>
+          <span>风机型号：</span><strong>WT1</strong>
+        </div>
+        <div>
+          <span>风机状态：</span><span class="error">电网故障停机</span>
+        </div>
+      </div>
+      <div class="middle">
+        <div class="midd-row">
+          <div class="midd-col">
+            <p><strong>20.02m/s</strong></p>
+            <p><i class="icon"></i><span>风速</span></p>
+          </div>
+          <div class="midd-col">
+            <p><strong class="error">?</strong></p>
+            <p><i class="icon"></i><span>桨叶角度</span></p>
+          </div>
+        </div>
+        <div class="midd-row">
+          <div class="midd-col">
+            <p><strong>40.2摄氏度</strong></p>
+            <p><i class="icon"></i><span>舱外温度</span></p>
+          </div>
+          <div class="midd-col">
+            <p><strong>40.2℃</strong></p>
+            <p><i class="icon"></i><span>舱内温度</span></p>
+          </div>
+        </div>
+        <div class="midd-row">
+          <div class="midd-col">
+            <p><strong class="error">?</strong></p>
+            <p><i class="icon"></i><span>有功功率</span></p>
+          </div>
+          <div class="midd-col">
+            <p><strong class="error">?</strong></p>
+            <p><i class="icon"></i><span>无功功率</span></p>
+          </div>
+        </div>
+        <div class="midd-row">
+          <div class="midd-col">
+            <p><strong class="error">?</strong></p>
+            <p><i class="icon"></i><span>电网电压</span></p>
+          </div>
+          <div class="midd-col">
+            <p><strong class="error">?</strong></p>
+            <p><i class="icon"></i><span>电网频率</span></p>
+          </div>
+        </div>
+        <div class="midd-row">
+          <div class="midd-col">
+            <p><strong class="error">?</strong></p>
+            <p><i class="icon"></i><span>低速轴转速</span></p>
+          </div>
+          <div class="midd-col">
+            <p><strong class="error">?</strong></p>
+            <p><i class="icon"></i><span>高速轴转速</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="bottom-item">
+          <p><i class="dian-icon"></i><span>当日发电量</span></p>
+          <p><strong>?</strong><i class="dian-icon2"></i></p>
+        </div>
+        <div class="bottom-item">
+          <p><i class="dian-icon"></i><span>当月发电量</span></p>
+          <p><strong>?</strong><i class="dian-icon2"></i></p>
+        </div>
+        <div class="bottom-item">
+          <p><i class="dian-icon"></i><span>当年发电量</span></p>
+          <p><strong>?</strong><i class="dian-icon2"></i></p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="link">
+        <span>生产报表</span><i></i>
+      </div>
+      <div class="link">
+        <span>故障统计报表</span><i></i>
+      </div>
+      <div class="link">
+        <span>留言板</span><i></i>
+      </div>
+    </section>
+  </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+      api.parseTapmode();
+      api.setRefreshHeaderInfo({
+        // loadingImg: 'widget://image/refresh.png',
+        bgColor: 'rgba(0,0,0,0)',
+        textColor: '#fff',
+        textDown: '下拉刷新',
+        textUp: '松开刷新',
+        textLoading: '正在刷新...',
+        showTime: false
+      }, function(ret, err) {
+        // currentPage = 1;
+        // getPageList()
+        setTimeout(function(){
+          api.refreshHeaderLoadDone();
+        }, 1000)
+      });
+      setTimeout(function(){
+        api.refreshHeaderLoading();
+      }, 2000)
+    };
+
+    function openDetails () {
+      api.openWin({
+        name: 'fengjidetails_win',
+        url: './fengjidetails_win.html'
+      });
+    }
+
+
+</script>
+</html>

@@ -1,0 +1,276 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style media="screen">
+      html, body {
+        height: 100%;width: 100%;
+      }
+      body {
+        background-image: url(../image/login-bg.png);background-size: cover;
+        background-position: top;background-repeat: no-repeat;
+      }
+      .container {
+        height: 100%;display: flex;flex-direction: column;align-items: center;
+      }
+      .top {
+        width: 100%;flex-grow: 1;
+      }
+      .bottom {
+        width: 100%;padding-bottom: 20px;
+      }
+      .zhfc {
+        width: 140px;height: 140px;margin: 0 auto;margin-top: 50px;background-repeat: no-repeat;
+        background-image: url(../image/login-zhfc.png);background-position: center;background-size: contain;
+      }
+      .dfdq {
+        margin: 0 30px;margin-top: 10px;display: flex;align-items: center;
+      }
+      .dfdq-line {
+        height: 1px;border-top: 1px solid rgba(225,225,225,1);flex-grow: 1;
+      }
+      .dfdq-inner {
+        width: 80px;height: 80px;margin: 0 10px;background-repeat: no-repeat;
+        background-image: url(../image/login-dfdq.png);background-position: center;background-size: contain;
+      }
+      .form {
+        padding: 0 30px;margin-top: 6px;
+      }
+      .form-input {
+        height:50px;margin-top: 10px;background:rgba(255,255,255,0.35);border:1px solid rgba(235, 255, 243, .7);
+        border-radius:6px;padding-left: 40px;position: relative;
+      }
+      .form-input i {
+        display: inline-block;width: 22px;height: 22px;position: absolute;top: 12px;left: 10px;
+      }
+      .form-input i.account{
+        background-image: url(../image/login-account.png);background-repeat: no-repeat;
+        background-position: center;background-size: contain;
+      }
+      .form-input i.pwd{
+        background-image: url(../image/login-pwd.png);background-repeat: no-repeat;
+        background-position: center;background-size: contain;
+      }
+      .form-input .input {
+        display: block;height: 100%;width: 100%;
+      }
+      .port-label {
+        margin-top: 20px;color: #fff;font-size: 15px;padding-bottom: 4px;
+      }
+      .port-input {
+        display: flex;align-items: center;justify-content: space-between;color: #fff;
+      }
+      .port-input-item {
+        background:rgba(255,255,255,0.35);border:1px solid rgba(235, 255, 243, .7);border-radius:6px;
+      }
+      .port-input-item input {
+        width: 100%;font-size: 15px;
+      }
+      .port-input span {
+        padding: 0 2px;
+      }
+      .form-btn {
+        height: 50px;background: #fff;border-radius: 6px;color: #348E58;display: flex;align-items: center;justify-content: center;
+        font-weight: bold;margin-top: 30px;
+      }
+      .copyright {
+        width: 45%;height: 40px;margin: 0 auto;background-image: url(../image/login-copyright.png);
+        background-position: center;background-repeat: no-repeat;background-size: contain;
+      }
+      .active {
+        background-color: rgba(255,255,255, 0.7) !important;
+      }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top" id="top">
+      <div class="zhfc"></div>
+      <div class="dfdq">
+        <div class="dfdq-line"></div>
+        <div class="dfdq-inner"></div>
+        <div class="dfdq-line"></div>
+      </div>
+      <div class="form">
+        <div class="form-input">
+          <i class="account"></i>
+          <div id="username" class="input"></div>
+        </div>
+        <div class="form-input">
+          <i class="pwd"></i>
+          <div id="password" class="input"></div>
+        </div>
+        <div class="port-label">请输入IP地址端口号</div>
+        <div class="port-input">
+          <div class="port-input-item">
+            <input id="ip1" type="text">
+          </div>
+          <span>.</span>
+          <div class="port-input-item">
+            <input id="ip2" type="text">
+          </div>
+          <span>.</span>
+          <div class="port-input-item">
+            <input id="ip3" type="text">
+          </div>
+          <span>.</span>
+          <div class="port-input-item">
+            <input id="ip4" type="text">
+          </div>
+          <span>:</span>
+          <div class="port-input-item">
+            <input id="port" type="text">
+          </div>
+        </div>
+        <div class="form-btn" tapmode="active" onclick="login()">登录</div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="copyright"></div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/config.js"></script>
+<script type="text/javascript">
+
+  function initInput(rect, key, options){
+    UIInput.open({
+      rect: {
+        x: rect.l,
+        y: rect.t,
+        w: rect.w,
+        h: rect.h
+      },
+      fixed: false,
+      autoFocus: false,
+      maxRows: 1,
+      maxStringLength: options.maxStringLength,
+      inputType: options.inputType || 'text',
+      placeholder: options.placeholder || '',
+      alignment: options.alignment || 'left',
+      fixedOn: api.frameName,
+      styles: {
+        bgColor: 'rgba(0,0,0,0)',
+        size: 18,
+        color: '#fff',
+        placeholder: {
+          color: '#eee'
+        }
+      },
+    }, function (ret) {
+      if (ret.eventType === 'change') {
+        UIInput.value({ id: ret.id}, function(value) {
+          if (key && value && value.msg) {
+            form[key] = value.msg
+          }
+        });
+      }
+    });
+  }
+
+  function closeWin(){
+    api.closeWin({});
+  }
+
+  function login() {
+    if (!form.userId) {
+      return api.toast({
+        msg: '请输入户用名',
+        location: 'middle'
+      });
+    }
+    if (!form.userSecret) {
+      return api.toast({
+        msg: '请输入密码',
+        location: 'middle'
+      });
+    }
+    api.showProgress({
+      title: '加载中...',
+      text: '',
+      modal: false
+    });
+    api.ajax({
+      url: $config.baseUrl + '/login?userId=' + form.userId + '&userSecret=' + form.userSecret,
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    }, function(ret, err) {
+      api.hideProgress();
+      if (err) {
+        api.toast({
+          msg: err.body.message,
+          location: 'middle'
+        });
+      } else if (ret.code === '1200') {
+        api.toast({
+          msg: '登录成功',
+          location: 'middle',
+          global: true
+        });
+        $api.setStorage('userinfo', ret.data)
+        setTimeout(function () {
+          api.openDrawerLayout({
+            name: 'home_win',
+            url: './home_win.html',
+            leftPane: {
+              name: 'userinfo_win',
+              url: './userinfo_win.html',
+              bgColor: '#fff',
+              bounces:false,
+            },
+            slidBackEnabled: false,
+            slidBackType: 'edge',
+          });
+        }, 300)
+      } else {
+        api.toast({
+          msg: ret.message,
+          location: 'middle'
+        });
+      }
+    });
+  }
+
+  var form = {
+    userId: '', // '14513'
+    userSecret: '' // '123456'
+  }
+  var UIInput;
+
+  apiready = function () {
+    api.addEventListener({
+      name: 'keyback'
+    }, function(ret, err) {
+      // 安卓系统监听按返回键的事件即可阻止返回上一个界面，ios无此事件
+      api.closeWidget({
+        silent: false
+      });
+    });
+    api.parseTapmode();
+    var top = $api.byId('top');
+    $api.fixStatusBar(top);
+    UIInput = api.require('UIInput');
+    var usernameRect = $api.offset($api.byId('username'));
+    var passwordRect = $api.offset($api.byId('password'));
+    var ip1Rect = $api.offset($api.byId('ip1'));
+    var ip2Rect = $api.offset($api.byId('ip2'));
+    var ip3Rect = $api.offset($api.byId('ip3'));
+    var ip4Rect = $api.offset($api.byId('ip4'));
+    var portRect = $api.offset($api.byId('port'));
+    initInput(usernameRect, 'userId', { placeholder: 'Super admin' });
+    initInput(passwordRect, 'userSecret', { placeholder: '请输入密码', inputType: 'password' });
+    initInput(ip1Rect, null, { keyboardType: 'number', maxStringLength: 3, alignment: 'center' });
+    initInput(ip2Rect, null, { keyboardType: 'number', maxStringLength: 3, alignment: 'center' });
+    initInput(ip3Rect, null, { keyboardType: 'number', maxStringLength: 3, alignment: 'center' });
+    initInput(ip4Rect, null, { keyboardType: 'number', maxStringLength: 3, alignment: 'center' });
+    initInput(portRect, null, { keyboardType: 'number', maxStringLength: 5, alignment: 'center' });
+
+  };
+</script>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+  <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+  <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+  <style media="screen">
+    html, body {
+      height: 100%;background-image: url(../image/userinfo-bg.png);
+      background-position: top;background-repeat: no-repeat;
+      background-size: contain;;
+    }
+    .header {
+      padding-top: 10px;padding-bottom: 5px;
+    }
+    .details-back {
+      display: inline-block;width: 24px;height: 24px;
+      background-image: url(../image/details-back.png);background-repeat: no-repeat;background-position: center;
+      background-size: contain;
+    }
+    .aui-bar-nav {
+      color: #fff;background-color: rgba(0,0,0,0);
+    }
+    .right-btn {
+      font-size: 15px;color: #fff;
+    }
+    .aui-title {
+      font-size: 18px;font-weight: bold;
+    }
+
+    .search {
+      height:60px;border-top:1px solid rgba(255,255,255,0.2);color: #fff;
+      width: 100%;display: flex;align-items: center;justify-content: space-between;padding: 0 15px;
+    }
+    .search span {
+      flex-grow: 1;font-size: 17px;
+    }
+    .search i {
+      flex-shrink: 0;display: block;width: 25px;height: 25px;background-image: url(../image/date.png);
+      background-repeat: no-repeat;background-position: center;background-size: contain;margin-left: -4px;
+    }
+  </style>
+</head>
+<body>
+  <div id="header" class="header">
+    <header class="aui-bar aui-bar-nav">
+      <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+        <span class="details-back"></span>
+      </a>
+      <div class="aui-title">
+        <span>风场报表</span>
+      </div>
+    </header>
+  </div>
+  <div class="search" id="search">
+    <span>2018/02/03 12:23 — 2018/08/03 14:21</span>
+    <i></i>
+  </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+
+
+
+  apiready = function(){
+    api.parseTapmode();
+    var header = $api.byId('header');
+    $api.fixStatusBar(header);
+    var offsetSearch = $api.offset($api.byId('search'));
+    var offsetHeader = $api.offset(header);
+
+
+
+    api.openFrame({
+      name: 'fengchangreport_frm',
+      url: 'fengchangreport_frm.html',
+      bounces: true,
+      rect: {
+        x: 0,
+        y: offsetHeader.h + offsetSearch.h,
+        w: 'auto',
+        h: 'auto'
+      }
+    })
+  };
+  function closeWin(){
+    api.closeWin({});
+  }
+</script>
+</html>

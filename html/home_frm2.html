@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+  <title>Hello APP</title>
+  <link rel="stylesheet" type="text/css" href="../css/api.css" />
+  <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+  <style>
+    html, body {
+      height: 100%;background-color: rgba(0,0,0,0) !important;
+    }
+    body {
+      display: flex;align-items: center;justify-content: center;
+    }
+    img {
+      width: 180px;filter: drop-shadow(300px 0 #fff);margin-left: -580px;overflow: hidden;
+    }
+    div {
+      text-align: center;width: 100%;color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <img id="ios" src="../image/building.png" alt="">
+  <div id="android">功能正在开发中...</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+  apiready = function() {
+    api.parseTapmode();
+    if (api.systemType === 'ios') {
+      document.querySelector('#ios').style.display = 'block';
+      document.querySelector('#android').style.display = 'none';
+    } else { // android
+      document.querySelector('#ios').style.display = 'none';
+      document.querySelector('#android').style.display = 'block';
+    }
+  };
+</script>
+
+</html>

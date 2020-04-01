@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style media="screen">
+      body {
+        background-image: url(../image/list-bg.png);
+        background-position: top;background-repeat: no-repeat;background-size: cover;
+      }
+      .aui-bar-nav {
+        background-color: transparent;
+      }
+      .account-icon {
+        display: inline-block;width: 22px;height: 22px;background-image: url(../image/header-account.png);
+        background-position: center;background-size: contain;
+      }
+      nav {
+        padding: 10px;
+      }
+      .nav {
+        border: 1px solid #fff;border-radius: 4px;color: #fff;overflow: hidden;
+      }
+      .nav .item {
+        float: left;width: 50%;text-align: center;height: 32px;display: flex;align-items: center;justify-content: center;
+        font-size: 15px;background: transparent;transition: all 0.2s ease-in;
+      }
+      .nav .item.active {
+        color: #519D6F;background: #fff;
+      }
+      .active2 {
+        /*border-left: 4px solid rgba(255,255,255,0) !important;*/
+        transform: scale(1.25);
+      }
+    </style>
+</head>
+<body>
+    <header class="aui-bar aui-bar-nav" id="aui-header">
+        <a style="padding-right:6px 10px;" class="aui-btn aui-pull-left" tapmode="active2" onclick="openDrawerPane()">
+          <i class="account-icon"></i>
+        </a>
+        <div class="aui-title">IPACOM</div>
+    </header>
+    <nav id="nav">
+      <div class="nav">
+        <div class="item active" tapmode="active" onclick="changeNavIndex(0)">风场列表</div>
+        <div class="item" tapmode="active" onclick="changeNavIndex(1)">集中监控</div>
+      </div>
+    </nav>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+
+  function openDrawerPane () {
+    api.openDrawerPane({ type: 'left' });
+  }
+  var index = 0;
+  apiready = function () {
+
+    api.parseTapmode();
+    api.addEventListener({
+      name: 'keyback'
+    }, function(ret, err) {
+      // 安卓系统监听按返回键的事件即可阻止返回上一个界面，ios无此事件
+      api.closeWidget({
+        silent: false
+      });
+    });
+    var header = $api.byId('aui-header');
+    var nav = $api.byId('nav');
+    $api.fixStatusBar(header);
+    var headerPos = $api.offset(header);
+    var navPos = $api.offset(nav);
+    api.openFrameGroup({
+      name: 'homeFrameGroup',
+      index: index,
+      preload: 2,
+      rect: {
+        x: 0,
+        y: headerPos.h + navPos.h,
+        w: 'auto',
+        h: 'auto'
+      },
+      frames: [{
+        name: 'home_frm1',
+        url: './home_frm1.html'
+      }, {
+        name: 'home_frm2',
+        url: './home_frm2.html'
+      }]
+  }, function(ret, err) {
+      index = ret.index;
+      var navs = document.querySelectorAll('#nav .item');
+      for (var i = 0; i < navs.length; i++) {
+        if (i === index) {
+          $api.addCls(navs[i], 'active');
+        } else {
+          $api.removeCls(navs[i], 'active');
+        }
+      }
+    });
+  };
+  function changeNavIndex (i) {
+    api.setFrameGroupIndex({
+      name: 'homeFrameGroup',
+      index: i
+    });
+    var navs = document.querySelectorAll('#nav .item');
+    for (var i = 0; i < navs.length; i++) {
+      if (i === index) {
+        $api.addCls(navs[i], 'active');
+      } else {
+        $api.removeCls(navs[i], 'active');
+      }
+    }
+  }
+</script>
+</html>

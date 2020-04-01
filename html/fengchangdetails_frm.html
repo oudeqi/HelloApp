@@ -1,0 +1,445 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,aItemress=no">
+    <title>AUI快速完成布局</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style media="screen">
+      html, body {
+          background-color: rgba(0,0,0,0) !important;
+      }
+      .container {
+        padding: 0 15px;
+        padding-bottom: 20px;
+      }
+      .fjlb-btn {
+        height: 50px;border-radius: 6px;color: #fff;background: #66CD88;margin-top: 15px;padding: 0 15px;
+        display: flex;align-items: center;justify-content: space-between;
+      }
+      .fjlb-btn span {
+        display: inline-block;vertical-align: middle;font-size: 16px;
+      }
+      .list-icon {
+        display: inline-block;vertical-align: middle;width: 25px;height: 25px;background-image: url(../image/fjlb-icon.png);
+        background-repeat: no-repeat;background-position: center;background-size: contain;margin-top: -4px;
+      }
+      .enter-icon {
+        display: inline-block;vertical-align: middle;width: 25px;height: 25px;background-image: url(../image/enter-icon.png);
+        background-repeat: no-repeat;background-position: center;background-size: contain;margin-top: 2px;margin-left: -4px;
+      }
+      section {
+        background: #fff;border-radius: 6px;padding: 16px;margin-top: 15px;
+        box-shadow:0px 3px 10px 0px rgba(0, 0, 0, 0.15);
+      }
+
+      .fcbb-btn {
+        height: 60px;border-radius: 6px;color: #333;background: #fff;margin-top: 15px;
+        display: flex;align-items: center;justify-content: space-between;padding: 0 15px;
+      }
+      .fcbb-btn span {
+        display: inline-block;vertical-align: middle;font-size: 16px;
+      }
+      .fcbb-icon {
+        display: inline-block;vertical-align: middle;width: 25px;height: 25px;background-image: url(../image/fjlb-icon2.png);
+        background-repeat: no-repeat;background-position: center;background-size: contain;
+      }
+
+      .lyb-btn {
+        height: 60px;border-radius: 6px;color: #333;background: #fff;margin-top: 15px;
+        display: flex;align-items: center;justify-content: space-between;padding: 0 15px;
+      }
+      .lyb-btn span {
+        display: inline-block;vertical-align: middle;font-size: 16px;
+      }
+      .lyb-icon {
+        display: inline-block;vertical-align: middle;width: 25px;height: 25px;background-image: url(../image/lyb-icon.png);
+        background-repeat: no-repeat;background-position: center;background-size: contain;margin-top: 2px;
+      }
+
+      .enter-icon2 {
+        display: inline-block;vertical-align: middle;width: 25px;height: 25px;background-image: url(../image/enter-icon2.png);
+        background-repeat: no-repeat;background-position: center;background-size: contain;margin-left: -4px;
+      }
+
+      .row-01 {
+        display: flex;align-items: center;justify-content: space-between;color: #519D6F;font-size: 15px;
+      }
+      .row-02 {
+        display: flex;align-items: center;justify-content: space-between;padding: 10px 0;
+      }
+      .row-02 div {
+        width: 33.33%;text-align: center;color: #333;position: relative;
+      }
+      .row-02 div::after {
+        content: "";display: block;position: absolute;top: 20%;right: 0;width: 1px;height: 60%;background-color: #e8e8e8;
+      }
+      .row-02 div:last-child::after {
+        display: none;
+      }
+      .row-02 div strong {
+        color: #333;font-size: 18px;
+      }
+      .row-02 div span {
+        color: #777;font-size: 14px;
+      }
+
+      .row-03 {
+        border-radius: 6px;overflow: hidden;background-image: url(../image/details-bg2.png);background-position: center;
+        background-repeat: no-repeat;background-size: cover;padding: 0px 16px;
+      }
+      .row-03-item {
+        display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid rgba(255,255,255,0.35);
+        padding: 10px 0;
+      }
+      .row-03-item p {
+        color: #fff;
+      }
+      .row-03-item p span {
+        font-size: 15px;display: inline-block;vertical-align: middle;
+      }
+      .row-03-item p strong {
+        font-size: 18px;display: inline-block;vertical-align: middle;
+      }
+      .row-03-item:last-child {
+        border-bottom: 0;
+      }
+      .dian-icon {
+        display: inline-block;vertical-align: middle;width: 20px;height: 20px;background-image: url(../image/dian-icon.png);
+        background-repeat: no-repeat;background-position: center;background-size: contain;
+      }
+      .dian-icon2 {
+        display: inline-block;vertical-align: middle;width: 26px;height: 26px;background-image: url(../image/dian-icon2.png);
+        background-repeat: no-repeat;background-position: center;background-size: contain;margin-left: 6px;
+      }
+      .sec-header {
+        color: #333;font-weight: bold;font-size: 18px;padding-left: 3px;
+      }
+      .row-04 {
+        display: flex;align-items: center;justify-content: center;color: #8C3535;margin-top: 4px;
+      }
+      .row-04 div {
+        flex-grow: 1;height:56px;background:linear-gradient(0deg,rgba(255,245,245,1),rgba(255,229,229,1));
+        border:2px solid rgba(236, 163, 163, 1);border-radius:8px;overflow: hidden;margin: 5px;
+      }
+      .row-05 {
+        display: flex;align-items: center;justify-content: center;color: #844B01;
+      }
+      .row-05 div {
+        flex-grow: 1;height:56px;background:linear-gradient(180deg,rgba(255,243,178,1),rgba(255,248,210,1));
+        border:2px solid rgba(221, 169, 101, 1);border-radius:8px;overflow: hidden;margin: 5px;
+        width: 25%;
+      }
+      .row-06 {
+        display: flex;align-items: center;justify-content: center;color: #35672C;
+      }
+      .row-06 div {
+        flex-grow: 1;height:56px;background:linear-gradient(180deg,rgba(217,255,210,1),rgba(241,255,238,1));
+        border:2px solid rgba(140, 198, 129, 1);border-radius:8px;overflow: hidden;margin: 5px;
+      }
+      .grid {
+        padding: 10px 8px;
+      }
+      .grid strong {
+        display: block;font-size: 20px;text-align: center;line-height: 1.5;
+      }
+      .grid p {
+        font-size: 14px;text-align: center;line-height: 1;
+      }
+      .line {
+        width: auto;height: 300px;background: #fff;
+      }
+      .active {
+        opacity: 0.8;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+      <section class="fjlb-btn" tapmode="active" onclick="fengjiList()">
+        <div>
+          <i class="list-icon"></i>
+          <span>风机列表</span>
+        </div>
+        <div>
+          <span>20</span>
+          <i class="enter-icon"></i>
+        </div>
+      </section>
+
+      <section>
+        <div class="row-01">
+          <span id="v1">装机容量：</span>
+          <span id="v2">装机台数：</span>
+        </div>
+        <div class="row-02">
+          <div>
+            <strong id="v3">?</strong>
+            <p><i></i><span>风速</span></p>
+          </div>
+          <div>
+            <strong id="v4">?</strong>
+            <p><i></i><span>功率</span></p>
+          </div>
+          <div>
+            <strong id="v5">?</strong>
+            <p><i></i><span>舱位温度</span></p>
+          </div>
+        </div>
+        <div class="row-03">
+          <div class="row-03-item">
+            <p><i class="dian-icon"></i><span>当日发电量</span></p>
+            <p><strong id="v6">?</strong><i class="dian-icon2"></i></p>
+          </div>
+          <div class="row-03-item">
+            <p><i class="dian-icon"></i><span>当月发电量</span></p>
+            <p><strong id="v7">?</strong><i class="dian-icon2"></i></p>
+          </div>
+          <div class="row-03-item">
+            <p><i class="dian-icon"></i><span>当年发电量</span></p>
+            <p><strong id="v8">?</strong><i class="dian-icon2"></i></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="sec-header">
+          风机状态
+        </div>
+        <div class="row-04">
+          <div>
+            <strong>2</strong>
+            <p>报警运行</p>
+          </div>
+          <div>
+            <strong>2</strong>
+            <p>故障停机</p>
+          </div>
+          <div>
+            <strong>2</strong>
+            <p>电网故障</p>
+          </div>
+          <div>
+            <strong>2</strong>
+            <p>维护停机</p>
+          </div>
+        </div>
+        <div class="row-05">
+          <div>
+            <strong>2</strong>
+            <p>用户停机</p>
+          </div>
+          <div>
+            <strong>2</strong>
+            <p>天气停机</p>
+          </div>
+          <div>
+            <strong>2</strong>
+            <p>限功率停机</p>
+          </div>
+          <div>
+            <strong>2</strong>
+            <p>限功率运行</p>
+          </div>
+        </div>
+        <div class="row-06">
+          <div>
+            <strong>2</strong>
+            <p>正常运行</p>
+          </div>
+          <div>
+            <strong>2</strong>
+            <p>风机启动</p>
+          </div>
+          <div>
+            <strong>2</strong>
+            <p>风机待机</p>
+          </div>
+          <div>
+            <strong>2</strong>
+            <p>通讯中断</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-header">
+          风场风速功率曲线
+        </div>
+        <div id="line" class="line"></div>
+      </section>
+
+      <section class="fcbb-btn" tapmode="active" onclick="fengchangReport()">
+        <div>
+          <i class="fcbb-icon"></i>
+          <span>风场报表</span>
+        </div>
+        <div>
+          <i class="enter-icon2"></i>
+        </div>
+      </section>
+
+      <section class="lyb-btn" tapmode onclick="goMessage()">
+        <div>
+          <i class="lyb-icon"></i>
+          <span>留言板</span>
+        </div>
+        <div>
+          <i class="enter-icon2"></i>
+        </div>
+      </section>
+
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../script/config.js"></script>
+<script type="text/javascript" src="../script/echarts.min.js" ></script>
+<script type="text/javascript">
+
+  function fengchangReport () {
+    api.openWin({
+      name: 'fengchangreport_win',
+      url: './fengchangreport_win.html',
+      bgColor: '#66CD88'
+    });
+  }
+
+  function fengjiList () {
+    api.openWin({
+      name: 'fengjilist_win',
+      url: './fengjilist_win.html',
+      bgColor: '#66CD88'
+    });
+  }
+
+  function goMessage () {
+    api.openWin({
+      name: 'messageboard_win',
+      url: './messageboard_win.html',
+      bgColor: '#f0f0f0'
+    });
+  }
+
+  function getDetails () {
+    var userinfo = $api.getStorage('userinfo');
+    api.ajax({
+      url: $config.baseUrl + '/windField/detail',
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        'Authorization': userinfo.token
+      },
+      data: {
+        body: {
+          id: id
+        }
+      }
+    }, function(ret, err) {
+      api.refreshHeaderLoadDone();
+      if (err) {
+        api.toast({
+          msg: err.body.message,
+          location: 'middle'
+        });
+      } else if (ret.code === '1200') {
+        // alert(JSON.stringify(ret.data))
+        var value = ret.data;
+        $api.byId('v1').innerHTML = '装机容量：' + (value.capacity || '?') + (value.capacityUnit || '');
+        $api.byId('v2').innerHTML = '装机台数：' + (value.turbineNumber || '?') + '台';
+        $api.byId('v3').innerHTML = (value.windSpeed || '?') + (value.windSpeedUnit || '');
+        $api.byId('v4').innerHTML = (value.power || '?') + (value.powerUnit || '');
+        $api.byId('v5').innerHTML = (value.wrapTemperature || '?') + (value.wrapTemperatureUnit || '');
+        $api.byId('v6').innerHTML = (value.generatingElectricDay || '?') + (value.generatingElectricDayUnit || '');
+        $api.byId('v7').innerHTML = (value.generatingElectricMonth || '?') + (value.generatingElectricMonthUnit || '');
+        $api.byId('v8').innerHTML = (value.generatingElectricYear || '?') + (value.generatingElectricYearUnit || '');
+      } else {
+        api.toast({
+          msg: ret.message,
+          location: 'middle'
+        });
+      }
+    })
+  }
+
+  var id = null; // 风场ID
+  apiready = function () {
+    id = api.pageParam.id;
+    api.setRefreshHeaderInfo({
+      // loadingImg: 'widget://image/refresh.png',
+      bgColor: '#ddd',
+      textColor: '#fff',
+      textDown: '下拉刷新',
+      textUp: '松开刷新',
+      textLoading: '正在刷新...',
+      showTime: false
+    }, function(ret, err) {
+      getDetails();
+    });
+    api.refreshHeaderLoading();
+  }
+  var myChart = echarts.init(document.getElementById('line'));
+  var option = {
+    tooltip: {
+      trigger: 'axis',
+      formatter: '{a0}: {c0}<br />{a1}: {c1}',
+      axisPointer: {
+        type: 'cross',
+        crossStyle: {
+          color: '#999'
+        },
+        label: {
+          show: false
+        }
+      }
+    },
+    color:['#FF9600','#37B7F2'],
+    legend: {
+      top: 10,
+      data: ['功率', '风速'],
+    },
+    xAxis: [
+      {
+        type: 'category',
+        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+      }
+    ],
+    yAxis: [
+      {
+        type: 'value',
+        name: '功率(MW)',
+        min: 0,
+        max: 250,
+        interval: 50,
+        axisLabel: {
+          formatter: '{value}'
+        }
+      },
+      {
+        type: 'value',
+        name: '风速(m/s)',
+        min: 0,
+        max: 25,
+        interval: 5,
+        axisLabel: {
+          formatter: '{value}'
+        }
+      }
+    ],
+    series: [
+      {
+        name: '功率',
+        type: 'line',
+        data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6]
+      },
+      {
+        name: '风速',
+        type: 'line',
+        data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6]
+      }
+    ]
+  };
+  myChart.setOption(option);
+</script>
+</html>
